@@ -1,14 +1,14 @@
 import React from 'react';
 import {Switch, Route} from 'react-router-dom';
 import Home from './components/Home';
-import postContainer from './containers/postContainer';
+import PostContainer from './containers/postContainer';
 import Drink from './components/Drink';
 
 export default(
 	<div>
 		<Switch>
             <Route exact path='/roast' component={Home}></Route>
-		<Route exact path='/roast/users/:user_id/drinks' component={postContainer}></Route> 
+		<Route exact path='/roast/users/:user_id/drinks' component={PostContainer}></Route> 
 		<Route exact path='/roast/users/:user_id/drinks/:drink_id' component={Drink}></Route> 
 		</Switch>
 		
