@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import Header from '../components/Header';
 import Users from '../components/Users';
+import Drink from '../components/Drink';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 class PostContainer extends Component {
@@ -45,7 +47,7 @@ class PostContainer extends Component {
                         <div className='drinksList' key={idx}>
                             <div className="review">
                                 <img alt="drinkPic" src={drinks.drink_photo}/>
-                                <h2> Drink: {drinks.name} </h2>
+                                <h2> Drink: <Link to={`/roast/users/${drinks.user_id}/drinks/${drinks._id}`}>{drinks.name}</Link></h2>
                                 <h4> Store: {drinks.store} </h4>
                                 <h4> Title: {drinks.review_title} </h4>
                                 <p> Review: {drinks.review} </p>
