@@ -1,29 +1,27 @@
 import React, {Component} from 'react';
 
-class newDrink extends Component {
+class NewDrink extends Component {
 
 	render(){
 		return(
 			<div>
-	           <form onSubmit={this.props.onSubmit}>
-	                <label>Name of Drink:</label>
-	                <input type='text' name='name' placeholder='drink name' value={this.props.name} onChange={this.props.handleNameChange}/>
-	                <label>Store:</label>
-	                <input type='text' name='store' placeholder='store' value={this.props.store} onChange={this.props.handleStoreChange}/>
-	                <label>Review Title:</label>
-	                <input type='text' name='title' placeholder='Title' value={this.props.review_title} onChange={this.props.handleReviewTitleChange}/>
-                    <label>Review:</label>
-	                <input type='textarea' name='review' placeholder='Type your review' value={this.props.review} onChange={this.props.handleReviewChange}/>
-	                <label>Rating:</label>
-	                <input type='text' name='rating' placeholder='Rating' value={this.props.rating} onChange={this.props.handleRatingChange}/>
-	                <label>Attach a Photo:</label>
-	                <input type='text' name='photo' placeholder='Enter URL' value={this.props.drink_photo} onChange={this.props.handleDrinkPhotoChange}/>
-
-                    <button className="submit" type='submit'>Submit</button>
-	            </form>
+				<form className='newPostForm' onSubmit={this.props.onSubmit}>
+						<label>Name of Drink:</label>
+						<input type='text' name="drink" placeholder="Drink Name Here" value={this.props.name} onChange={this.handleDrinkChange}/>
+						<label>Store:</label>
+						<input type='text' name="location" placeholder="Store Name Here" value={this.props.store} onChange={this.handleStoreChange}/>
+						<label>Review Title:</label>
+						<input type='text' name="review_title" placeholder="Title Your Review" value={this.props.review_title} onChange={this.handleTitleChange}/>
+						<label>Review:</label>
+						<textarea className="textarea" wrap="hard" type='area' name="review" value={this.props.review} onChange={this.handleReviewChange} />
+						<label>Rating:</label>
+						<input type='text' name="rating" placeholder="Rate this drink: 1 - 5. 5 being the best!" value={this.props.rating} onChange={this.handleRatingChange}/>
+						<label>Add a Photo:</label>
+						<input type='text' name="photoUrl" placeholder="url of photo" value={this.props.photo} onChange={this.handlePhotoChange}/>
+				</form>
 	        </div>
 			)
 	}
 }
 
-export default newDrink;
+export default NewDrink;
