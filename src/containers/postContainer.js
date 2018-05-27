@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import Header from '../components/header';
+import Header from '../components/Header';
 
 class postContainer extends Component {
     render(){
@@ -10,3 +10,5 @@ class postContainer extends Component {
         )
     }
 }
+
+export default postContainer

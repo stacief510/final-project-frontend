@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import sideCup from '../images/sideCup1.jpg';
-
 const Home = () => {
     return (
         <div className="home">
