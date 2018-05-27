@@ -48,3 +48,21 @@ aside{
 aside a{
   display: block;
 }
+.drinkPic{
+  width:80%;
+  height: 200px;
+}
+.singleReview{
+  padding: 20px;
+  border: black 1px solid;
+  width: 60%;
+  margin: auto;
+}
+.showOne{
+  margin-top: 100px;
+}
+.showOne .btn{
+  width: 200px;
+  text-align: center;
+  margin-right: 30px;
+}

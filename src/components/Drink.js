@@ -21,29 +21,32 @@ class Drink extends Component {
     }
    
     render(){
+        console.log(this.state.review.drink_photo)
         return(
-            <div>
-                 <div className="singleReview" data-event-index= {this.props.match.params.drink_id} >
-                    {/* <img className="row"
-                     src={this.props.drinks.drink_photo}  /> */}
-                    <h1 className="row">
-                     {this.state.review.name} 
-                    </h1>
-                    <h1 className="row">
-                     {this.state.review.store} 
-                    </h1>
-                    <h1 className="row">
-                        {this.state.review.review_title}
-                    </h1>
-                    <h1 className="row">
-                     { this.state.review.review}
-                    </h1>
-                    <h1 className="row">
-                     {this.state.review.rating} 
-                    </h1>
-                    <button type="delete" onClick={this.onDelete}>Delete Post</button>
-                    <button type="edit" onClick={this.onEdit}>Edit Post</button>
-                    <Link to={`/roast/users/${this.props.match.params.user_id}/drinks`} className="btn btn-primary">Back to Profile</Link>
+            <div className="container showOne">
+                <div className="row">
+                <img alt="coffeePic" className="col-md-4" style={{height: "300px", width:"200px"}}
+                     src={this.state.review.drink_photo}  />
+                 <div className="singleReview col-md-8" data-event-index= {this.props.match.params.drink_id} >
+                    <h2>
+                     Drink: {this.state.review.name} 
+                    </h2>
+                    <h4>
+                     Store: {this.state.review.store} 
+                    </h4>
+                    <h4>
+                       Title: {this.state.review.review_title}
+                    </h4>
+                    <h4>
+                     Review: { this.state.review.review}
+                    </h4>
+                    <h4>
+                     Rating: {this.state.review.rating} 
+                    </h4>
+                    <button className="btn btn-info" type="delete" onClick={this.onDelete}>Delete Post</button>
+                    <button className="btn btn-info" type="edit" onClick={this.onEdit}>Edit Post</button>
+                    <Link to={`/roast/users/${this.props.match.params.user_id}/drinks`} className="btn btn-info">Back to Profile</Link>
+                </div>
                 </div>
             </div>
         )
