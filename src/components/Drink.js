@@ -19,6 +19,19 @@ class Drink extends Component {
 
         }); 
     }
+    onDelete = () => {
+        let oneUserId = this.props.match.params.user_id;
+        let oneReviewId = this.props.match.params.drink_id;
+        console.log('oneuserid', oneUserId);
+        console.log('drinkId', oneReviewId);
+        axios.delete(`http://localhost:3001/users/${oneUserId}/drinks/${oneReviewId}`, {data: {id: oneReviewId}})
+            .then(res => {
+                this.props.history.push(`/roast/users/${oneUserId}/drinks`);
+            })
+
+    }
+
+   
    
     render(){
         console.log(this.state.review.drink_photo)
