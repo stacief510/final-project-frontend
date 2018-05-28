@@ -33,7 +33,7 @@ class NewDrink extends Component {
 				<div className="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modalTitle" aria-hidden="true">
 					<div className="modal-dialog" role="document">
 						<div className="modal-content">
-						<form className='newPostForm' onSubmit={(e) => this.props.onSubmit(e, this.state)}>
+						<form className='newPostForm' onSubmit={(e) => this.handleSubmit(e)}>
 								<div className="modal-header">
 										<h5 className="modal-title" id="modalTitle">Create a Post:</h5>
 										<button type="button" className="close" data-dismiss="modal" aria-label="Close">

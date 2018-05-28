@@ -42,8 +42,8 @@ class PostContainer extends Component {
         })
     }
 
-    onSubmit = (e, newDrink) => {
-        e.preventDefault();
+    onSubmit = (newDrink) => {
+        // e.preventDefault();
         console.log("FROM POST CONTAINER: ", newDrink);
         // let updatedDrinks = this.state.drinks.concat(newDrink)
         this.setState({
