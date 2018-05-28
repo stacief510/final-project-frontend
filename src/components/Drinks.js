@@ -5,19 +5,19 @@ class Drinks extends Component{
     
     render(){
 
-        let result = this.props.drinks.map((drinks, idx) => {
+        let result = this.props.drinks.map((drink, idx) => {
             return(
                         <div className='drinksList' key={idx}>
                             <div className="review row">
                                 <div className="col-md-4">
-                                    <img alt="drinkPic" className="drinkPic" src={drinks.drink_photo}/>
+                                    <img alt="drinkPic" className="drinkPic" src={drink.drink_photo}/>
                                 </div>
                                 <div className="col-md-8">
-                                    <h2> Drink: <Link to={`/roast/users/${drinks.user_id}/drinks/${drinks._id}`}>{drinks.name}</Link></h2>
-                                    <h4> Store: {drinks.store} </h4>
-                                    <h4> Title: {drinks.review_title} </h4>
-                                    <p> Review: {drinks.review} </p>
-                                    <h4> Rating: {drinks.rating} </h4>
+                                    <h2> Drink: <Link to={`/roast/users/${drink.user_id}/drinks/${drink._id}`}>{drink.name}</Link></h2>
+                                    <h4> Store: {drink.store} </h4>
+                                    <h4> Title: {drink.review_title} </h4>
+                                    <p> Review: {drink.review} </p>
+                                    <h4> Rating: {drink.rating} </h4>
                                 </div>
                             </div>
                         </div>
