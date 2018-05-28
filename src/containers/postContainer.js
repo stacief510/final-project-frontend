@@ -42,28 +42,33 @@ class PostContainer extends Component {
         })
     }
     onSubmit = (newDrink) => {
-        console.log("FROM POST CONTAINER: ", newDrink);
-        // let updatedDrinks = this.state.drinks.concat(newDrink)
-        this.setState({
-            drinks: [
-                ...this.state.drinks,
-                newDrink
-            ]
+        let currentUser_Id = this.props.match.params.user_id
+        axios.post(`http://localhost:3001/users/${currentUser_Id}/drinks`, newDrink)
+            .then(res => {
+                console.log("FROM POST CONTAINER: ", res.data);
+                //  let updatedDrinks = this.state.drinks.concat(newDrink)
+             
+                this.setState({
+                    drinks: [
+                        ...this.state.drinks,
+                        newDrink
+                    ]
+                });
         });
     }
-
-    render(){
     
+    render(){
+        
         return(
             <div>
                 <Header />
-                <div className='container'>
+                <div id="profile" className='container'>
                     <div className="row">
                     <aside className="col-md-4">
                         <img alt="userPic" className="userPic" style={{height: "200px", width:"200px"}} src={this.state.current_user.user_photo}/>
-                        <h1>{this.state.current_user.name}</h1>
+                        <h2>{this.state.current_user.name}</h2>
                         <h3>{this.state.current_user.current_city}</h3>
-                        <button className="btn btn-info" data-toggle="modal" data-target="#modal">Create a Review</button>
+                        <button className="btn btn-info create" data-toggle="modal" data-target="#modal">Create a Review</button>
                         <a href='#'>Find Coffee</a>
                         <a href='#'>Top Rated Coffee</a>
                     </aside>

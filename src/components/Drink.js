@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import { Link } from 'react-router-dom';
+import Header from './Header'
 import axios from 'axios';
 
 class Drink extends Component {
@@ -85,6 +86,7 @@ class Drink extends Component {
         if(this.state.editable){
             return(
                 <div className="container showOne">
+                    <Header />
                     <div className="row">
                     <img alt="coffeePic" className="col-md-4" style={{height: "300px", width:"200px"}}
                         src={this.state.drinks.drink_photo} />

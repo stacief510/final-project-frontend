@@ -75,9 +75,9 @@ const Home = () => {
             </div>
 
             <div className='title'>
-                <h1>Roast</h1>
+                <h1 className="roast">Roast</h1>
                 <h3>A place to espresso yourself.</h3>
-                <p>Create an account or login to give your favorite drinks a latte of love.</p>
+                <h5>Create an account or login to give your favorite drinks a latte of love.</h5>
             </div>
         </div>
     );

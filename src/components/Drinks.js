@@ -13,10 +13,10 @@ class Drinks extends Component{
                                     <img alt="drinkPic" className="drinkPic" src={drink.drink_photo}/>
                                 </div>
                                 <div className="col-md-8">
-                                    <h2> Drink: <Link to={`/roast/users/${drink.user_id}/drinks/${drink._id}`}>{drink.name}</Link></h2>
+                                    <h3> Drink: <Link to={`/roast/users/${drink.user_id}/drinks/${drink._id}`}>{drink.name}</Link></h3>
                                     <h4> Store: {drink.store} </h4>
                                     <h4> Title: {drink.review_title} </h4>
-                                    <p> Review: {drink.review} </p>
+                                    <h4> Review: {drink.review} </h4>
                                     <h4> Rating: {drink.rating} </h4>
                                 </div>
                             </div>
