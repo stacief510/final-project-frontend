@@ -41,6 +41,18 @@ class PostContainer extends Component {
             console.log('123', this.state.current_user)
         })
     }
+
+    onSubmit = (e, newDrink) => {
+        e.preventDefault();
+        console.log("FROM POST CONTAINER: ", newDrink);
+        // let updatedDrinks = this.state.drinks.concat(newDrink)
+        this.setState({
+            drinks: [
+                ...this.state.drinks,
+                newDrink
+            ]
+        });
+    }
     
     // handleDrinkChange=(event)=>{
     //     const value = event.target.value;
@@ -48,7 +60,7 @@ class PostContainer extends Component {
     // }
 
     render(){
-    
+        console.log(this.state.drinks)
         return(
             <div>
                 <Header />
@@ -70,26 +82,10 @@ class PostContainer extends Component {
                 </div>
 
          
-            {/* <!-- Create Post Modal --> */}
-            <div className="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modalTitle" aria-hidden="true">
-            <div className="modal-dialog" role="document">
-                <div className="modal-content">
-                    <div className="modal-header">
-                        <h5 className="modal-title" id="modalTitle">Create a Post:</h5>
-                        <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div className="modal-body">
-                        <NewDrink onSubmit={this.onSubmit} handleDrinkChange={this.handleDrinkChange} handleStoreChange={this.handleStoreChange} handleTitleChange={this.handleTitleChange} handleReviewChange={this.handleReviewChange} handleRatingChange={this.handleRatingChange} handlePhotoChange={this.handlePhotoChange} name={this.state.drinks.name} store={this.state.drinks.store} review_title={this.state.drinks.review_title} review={this.state.drinks.review} />
-                    </div>
-                        <div className="modal-footer">
-                            <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="button" className="btn btn-primary">Save</button>
-                        </div>
-                </div>
-            </div>
-            </div>
+                {/* <!-- Create Post Modal --> */}
+            
+                <NewDrink onSubmit={this.onSubmit}  />
+                    
 
             </div>
         )
