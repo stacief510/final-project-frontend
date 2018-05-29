@@ -7,7 +7,7 @@ class NewDrink extends Component {
 		review_title: '',
 		review: '',
 		rating: '',
-		photo: '',
+		drink_photo: '',
 	}
 
 	handleChange = (e) => {
@@ -29,7 +29,7 @@ class NewDrink extends Component {
 	render(){
 		return(
 			<div>
-				<div className="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modalTitle" aria-hidden="true">
+				<div className="modal fade" id="modal" tabIndex="-1" role="dialog" aria-labelledby="modalTitle" aria-hidden="true">
 					<div className="modal-dialog" role="document">
 						<div className="modal-content">
 						<form className='newPostForm' onSubmit={(e) => this.handleSubmit(e)}>
@@ -52,7 +52,7 @@ class NewDrink extends Component {
 											<label>Rating:</label>
 											<input type='text' name="rating" placeholder="Rate this drink: 1 - 5. 5 being the best!" value={this.state.rating} onChange={this.handleChange}/>
 											<label>Add a Photo:</label>
-											<input type='text' name="photo" placeholder="url of photo" value={this.state.photo} onChange={this.handleChange}/>
+											<input type='text' name="drink_photo" placeholder="url of photo" value={this.state.drink_photo} onChange={this.handleChange}/>
 									
 								</div>
 								<div className="modal-footer">

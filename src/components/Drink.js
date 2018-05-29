@@ -5,13 +5,7 @@ import axios from 'axios';
 
 class Drink extends Component {
    state={
-       drinks: [{
-           name: "",
-           store: "",
-           review_title: "",
-           dreview: "",
-           rating: ""
-       }],
+       drinks: [],
        editable: true
    }
 
@@ -20,6 +14,7 @@ class Drink extends Component {
         let oneReview = this.props.match.params.drink_id;
         axios.get(`http://localhost:3001/users/${oneUser}/drinks/${oneReview}`)
         .then((res)=>{
+            console.log("Drink Response :", res)
             this.setState({
                 drinks: res.data,
                 user_id: this.props.match.params.user_id
@@ -40,50 +35,66 @@ class Drink extends Component {
     }
 
     onEdit=()=>{
+        console.log("EDIT CLICK STATE: ",this.state.drinks)
         this.setState({
+            ...this.state.drinks,
             editable: false
         })
     }
-    handleDrinkChange=(event)=>{
+    
+    handleChange=(event)=>{
         const value = event.target.value;
-        this.setState({drinks:{drink: value}});
+        this.setState({drinks: {
+            ...this.state.drinks,
+            [event.target.name]: value
+        }});
     }
-    handleStoreChange=(event)=>{
-        const value = event.target.value;
-        this.setState({drinks:{store: value}});
-    }
-    handleTitleChange=(event)=>{
-        const value = event.target.value;
-        this.setState({drinks:{review_title: value}});
-    }
-    handleReviewChange=(event)=>{
-        const value = event.target.value;
-        this.setState({drinks:{dreview: value}});
-    }
-    handleRatingChange=(event)=>{
-        const value = event.target.value;
-        this.setState({drinks:{rating: value}});
-    }
-    onSave=(event)=>{
+
+    // handleDrinkChange=(event)=>{
+    //     const value = event.target.value;
+    //     this.setState({drinks: {name: value}});
+    // }
+    // handleStoreChange=(event)=>{
+    //     const value = event.target.value;
+    //     this.setState({drinks:{store: value}});
+    // }
+    // handleTitleChange=(event)=>{
+    //     const value = event.target.value;
+    //     this.setState({drinks:{review_title: value}});
+    // }
+    // handleReviewChange=(event)=>{
+    //     const value = event.target.value;
+    //     this.setState({drinks:{review: value}});
+    // }
+    // handleRatingChange=(event)=>{
+    //     const value = event.target.value;
+    //     this.setState({drinks:{rating: value}});
+    // }
+
+    onSubmit=(event)=>{
         event.preventDefault();
         const test = this.state.drinks;
+        console.log("EDIT SUBMISSION: ", test)
         let oneUserId = this.props.match.params.user_id;
         let oneReviewId = this.props.match.params.drink_id;
+        // console.log("EDIT SUBMISSION: ", test)
         axios.put(`http://localhost:3001/users/${oneUserId}/drinks/${oneReviewId}`, test)
             .then(res => {
                 let updatedDrink = res.data;
                 console.log('this is data', updatedDrink)
-                this.setState({ drinks: updatedDrink.drinks,
+                this.setState({ 
+                    drinks: updatedDrink,
                     editable: true
                 
                 })
             });
-            console.log('123', this.state.drinks);
+            // console.log('123', this.state.drinks);
     }
 
 
     render(){
-        if(this.state.editable){
+        console.log("STATE Drink :", this.state.drinks)
+        if(this.state.editable && this.state.drinks){
             return(
                 <div className="container showOne">
                     <Header />
@@ -116,20 +127,19 @@ class Drink extends Component {
         }
         else{
             return(
-            <div className="updateDrinkForm" 
-                data-drink-index= {this.props.match.params.drink_id} >
-                <form className="form-group">
+            <div className="updateDrinkForm">
+                <form className="form-group" onSubmit={this.onSubmit}>
                     <label>Drink:</label>
-                    <input className="form-control" onChange={this.handleDrinkChange} type="text"  value={this.state.drinks.name}/>
+                    <input className="form-control" name="name" onChange={this.handleChange} type="text"  value={this.state.drinks.name}/>
                     <label>Store:</label>
-                    <input className="form-control" onChange={this.handleStoreChange} type="text"  value={this.state.drinks.store}/>
+                    <input className="form-control" name="store" onChange={this.handleChange} type="text"  value={this.state.drinks.store}/>
                     <label>Title:</label>
-                    <input className="form-control" onChange={this.handleTitleChange} type="text" value={this.state.drinks.review_title}/>
+                    <input className="form-control" name="review_title" onChange={this.handleChange} type="text" value={this.state.drinks.review_title}/>
                     <label>Review:</label>
-                    <input className="form-control" onChange={this.handleReviewChange} type="text" value={this.state.drinks.review}/>
+                    <input className="form-control" name="review" onChange={this.handleChange} type="text" value={this.state.drinks.review}/>
                     <label>Rating:</label>
-                    <input className="form-control" onChange={this.handleRatingChange} type="text" value={this.state.drinks.rating}/>
-                    <button className="btn btn-info" type="save" onClick={this.onSave}>Save Event</button>
+                    <input className="form-control" name="rating" onChange={this.handleChange} type="text" value={this.state.drinks.rating}/>
+                    <button className="btn btn-info" type="submit" >Save Event</button>
                 </form>
             </div>
             )

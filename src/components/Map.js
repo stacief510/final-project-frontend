@@ -26,12 +26,7 @@ class  MapContainer extends Component {
     }
   };
 
-
-  fetchPlaces(mapProps, map) {
-    const {google} = mapProps;
-    const service = new google.maps.places.PlacesService(map);
-    // ...
-  }
+  // `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=-37.778519,-122.405640&radius=1500&type=coffee&keyword=cruise&key=${API_KEY}`
  
   render() {
     const style = {
@@ -40,12 +35,15 @@ class  MapContainer extends Component {
       top: '100px',
       left: '5px',
     }
+    
     return (
       <div>
         <Header />
         <div className='map'>
           <Map google={this.props.google}  
-          
+          // onTilesLoaded={props.fetchPlaces}
+          // ref={props.onMapMounted}
+          // onBoundsChanged={props.fetchPlaces}
           style={style}
           initialCenter={{
             lat: 37.778519,
