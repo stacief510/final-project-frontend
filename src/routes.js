@@ -8,12 +8,12 @@ import Drink from './components/Drink';
 export default(
 	<div>
 		<Switch>
-            <Route exact path='/roast' component={Home}></Route>
+    <Route exact path='/roast' component={Home}></Route>
 		<Route exact path='/roast/find' component={Map}></Route>
-		<Route exact path='/roast/users/:user_id/drinks' component={PostContainer}></Route> 
-		<Route exact path='/roast/users/:user_id/drinks/:drink_id' component={Drink}></Route> 
+		<Route exact path='/roast/users/:user_id/drinks' component={PostContainer}></Route>
+		<Route exact path='/roast/users/:user_id/drinks/:drink_id' component={Drink}></Route>
 		</Switch>
-		
+
 	</div>
 )
 

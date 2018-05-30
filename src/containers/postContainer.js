@@ -85,4 +85,4 @@ class PostContainer extends Component {
     }
 }
 
-export default PostContainer
+export default PostContainer;

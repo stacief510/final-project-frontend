@@ -50,27 +50,6 @@ class Drink extends Component {
         }});
     }
 
-    // handleDrinkChange=(event)=>{
-    //     const value = event.target.value;
-    //     this.setState({drinks: {name: value}});
-    // }
-    // handleStoreChange=(event)=>{
-    //     const value = event.target.value;
-    //     this.setState({drinks:{store: value}});
-    // }
-    // handleTitleChange=(event)=>{
-    //     const value = event.target.value;
-    //     this.setState({drinks:{review_title: value}});
-    // }
-    // handleReviewChange=(event)=>{
-    //     const value = event.target.value;
-    //     this.setState({drinks:{review: value}});
-    // }
-    // handleRatingChange=(event)=>{
-    //     const value = event.target.value;
-    //     this.setState({drinks:{rating: value}});
-    // }
-
     onSubmit=(event)=>{
         event.preventDefault();
         const test = this.state.drinks;

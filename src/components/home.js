@@ -1,6 +1,7 @@
 import React from 'react';
 // import { Link } from 'react-router-dom';
 import sideCup from '../images/sideCup1.jpg';
+import LogIn from './login';
 const Home = () => {
     return (
         <div className="home">
@@ -12,7 +13,7 @@ const Home = () => {
             </a>
 
             {/* <!-- Create Acct Modal --> */}
-            <div className="modal fade" id="accountModalLong" tabindex="-1" role="dialog" aria-labelledby="accountModalLongTitle" aria-hidden="true">
+            <div className="modal fade" id="accountModalLong" tabIndex="-1" role="dialog" aria-labelledby="accountModalLongTitle" aria-hidden="true">
             <div className="modal-dialog" role="document">
                 <div className="modal-content">
                     <div className="modal-header">
@@ -44,35 +45,7 @@ const Home = () => {
             </div>
 
             {/* <-- LogIn trigger modal --> */}
-            <a className="mLink" data-toggle="modal" data-target="#LogInModalLong">
-            LogIn
-            </a>
-
-            {/* <!-- LogIn Modal --> */}
-            <div className="modal fade" id="LogInModalLong" tabindex="-1" role="dialog" aria-labelledby="LogInModalLongTitle" aria-hidden="true">
-            <div className="modal-dialog" role="document">
-                <div className="modal-content">
-                <div className="modal-header">
-                    <h5 className="modal-title" id="LogInModalLongTitle">Please LogIn:</h5>
-                    <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div className="modal-body">
-                     <form className='logForm'>
-                        <label>Email:</label>
-                        <input type='email' name="username" placeholder="email"/>
-                        <label>Password:</label>
-                        <input type='password' name="psw" placeholder="..."/>
-                    </form>
-                </div>
-                <div className="modal-footer">
-                    <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" className="btn btn-primary">LogIn</button>
-                </div>
-                </div>
-            </div>
-            </div>
+            <a className="mLink" data-toggle="modal" data-target="#LogInModalLong"> <LogIn /> LogIn </a>
 
             <div className='title'>
                 <h1 className="roast">Roast</h1>
@@ -80,7 +53,8 @@ const Home = () => {
                 <h5>Create an account or login to give your favorite drinks a latte of love.</h5>
             </div>
         </div>
-    );
-  };
+
+      );
+    };
 
 export default Home;

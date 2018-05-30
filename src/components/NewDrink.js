@@ -34,7 +34,7 @@ class NewDrink extends Component {
 						<div className="modal-content">
 						<form className='newPostForm' onSubmit={(e) => this.handleSubmit(e)}>
 								<div className="modal-header">
-										<h5 className="modal-title" id="modalTitle">Create a Post:</h5>
+										<h5 className="modal-title" id="modalTitle">Espresso Yourself:</h5>
 										<button type="button" className="close" data-dismiss="modal" aria-label="Close">
 										<span aria-hidden="true">&times;</span>
 										</button>
