@@ -1,24 +1,69 @@
-import React from 'react';
-import {Switch, Route} from 'react-router-dom';
+import React, {Component} from 'react';
+import {Switch, Route, Redirect} from 'react-router-dom';
+import jwt_decode from 'jwt-decode';
+import setAuthToken from './utils/setAuthToken';
 import Home from './components/Home';
 import PostContainer from './containers/postContainer';
 import Map from './components/Map';
 import Drink from './components/Drink';
+import LogIn from './components/login';
 
-export default(
-	<div>
-		<Switch>
-    <Route exact path='/roast' component={Home}></Route>
-		<Route exact path='/roast/find' component={Map}></Route>
-		<Route exact path='/roast/users/:user_id/drinks' component={PostContainer}></Route>
-		<Route exact path='/roast/users/:user_id/drinks/:drink_id' component={Drink}></Route>
-		</Switch>
+class RoutePage extends Component{
+	state = {
+		currentUser: {},
+		isAuthenticated: true,
+	}
 
-	</div>
-)
+	componentDidMount() {
+		let token;
+		if(localStorage.getItem('jwtToken') === null) {
+		  this.setState({ isAuthenticated: false })
+		} else {
+		  token = jwt_decode(localStorage.getItem('jwtToken'));
+		  setAuthToken(localStorage.jwtToken);
+		  this.setState({ currentUser: token, isAuthenticated: true });
+		}
+	  }
+	
+	  setCurrentUser = (userData) => {
+		console.log(userData);
+		this.setState({ currentUser: userData, isAuthenticated: true })
+	  }
+	
+	  handleLogout = () => {
+		if(localStorage.getItem('jwtToken') !== null) {
+		  localStorage.removeItem('jwtToken');
+		  this.setState({ currentUser: null, isAuthenticated: false });
+		<Redirect to='/roast' />;
+		}
+	  }
+	
+	render() {
+		console.log('Current User = ', this.state.currentUser);
+		console.log('Authenticated = ', this.state.isAuthenticated);
+	
+		const PrivateRoute = ({component: Component, ...rest}) => (
+		  <Route {...rest} render={(props) => (
+			this.state.isAuthenticated === true
+			  ? <Component {...props} />
+			  : <Redirect to='/roast' />
+		  )} />
+		)
 
+		return(
+			<div>
+				<Switch>
+				<Route exact path='/roast' render={ (props) => <Home {...props} setCurrentUser={this.setCurrentUser} handleLogout={this.handleLogout}/> }></Route>
+				<Route exact path='/roast/find' component={Map}></Route>
+				<PrivateRoute exact path='/roast/users/:user_id/drinks' component={PostContainer}/>
+				<PrivateRoute exact path='/roast/users/:user_id/drinks/:drink_id' component={Drink}/>
+				</Switch>
 
+			</div>
+		);
+	}
+}
+export default RoutePage;
+ 
 
-//line 10 - home page front cover view
-//line 11 - show all drinks for 1 user (Profile Page) and be able to click button to create new user
-// line 12 - show one drink post and  click to update the drink post.
+// render={ (props) => <LogIn {...props} setCurrentUser={this.setCurrentUser} /> } 

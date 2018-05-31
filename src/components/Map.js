@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import Header from './Header'
 import {Map, InfoWindow, Marker, GoogleApiWrapper} from  'google-maps-react';
+import axios from 'axios';
 const API_KEY = 'AIzaSyA_BiGhxTrDhBx8bBEJ41Elbjt7n419I_Q';
-
 class  MapContainer extends Component {
   state = {
     places:{},
@@ -13,8 +13,17 @@ class  MapContainer extends Component {
         lat: null,
         lng: null }
   };
+
+  getCoffeeShops = () => {
+    axios.get('https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=37.774929,-122.419416&radius=1500&type=cafe&key=AIzaSyA_BiGhxTrDhBx8bBEJ41Elbjt7n419I_Q')
+      .then(res => {
+        console.log(res)
+        return res;
+      })
+  }
  
   componentDidMount(){
+
     if (navigator && navigator.geolocation){
       navigator.geolocation.getCurrentPosition((pos) => {
         const coords = pos.coords;
@@ -25,6 +34,10 @@ class  MapContainer extends Component {
           }
         });
         console.log('sf', this.state)
+
+        this.getCoffeeShops();
+
+
 
         //do a search for coffee then render results onto page. 
 
@@ -84,7 +97,13 @@ class  MapContainer extends Component {
       top: '100px',
       left: '5px',
     }
-    
+    const pos1 = {lat: 37.759703, lng: -122.428093}
+    const pos2 = {lat: 37.759803, lng: -122.428093}
+    const pos3 = {lat: 37.759903, lng: -122.428093}
+    const pos4 = {lat: 37.759693, lng: -122.428093}
+
+
+
     return (
       <div>
         <Header />
@@ -102,6 +121,11 @@ class  MapContainer extends Component {
               radius: 5500,
               type:['coffee']}
             }>
+            <Marker />
+            <Marker position={pos1} />
+            <Marker position={pos2} />
+            <Marker position={pos3} />
+            <Marker position={pos4} />
 
             <Marker onClick={this.onMarkerClick}
                       position={{lat: this.state.currentLocation.lat, lng: this.state.currentLocation.lng}}
@@ -124,3 +148,6 @@ class  MapContainer extends Component {
 export default GoogleApiWrapper({
   apiKey: (API_KEY)
 })(MapContainer)
+
+
+//https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=-33.8670522,-122.419416&radius=1500&type=coffee&key=AIzaSyA_BiGhxTrDhBx8bBEJ41Elbjt7n419I_Q

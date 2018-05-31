@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
-import routes from './routes'
+import RoutePage from './routes'
 
 
 class App extends Component {
   render() {
     return (
-      <div>
-        {routes}
-      </div>
+        <div>
+          <RoutePage/>
+        </div>
     );
   }
 }

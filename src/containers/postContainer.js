@@ -1,7 +1,5 @@
 import React, {Component} from 'react';
 import Header from '../components/Header';
-import Users from '../components/Users';
-import Drink from '../components/Drink';
 import Drinks from '../components/Drinks';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
@@ -10,8 +8,8 @@ import NewDrink from '../components/NewDrink';
 class PostContainer extends Component {
     state = {
             drinks:[],
-            users:[],
-            current_user:[]
+            user: null,
+            err: ''
         }
    
      componentDidMount(){
@@ -20,27 +18,20 @@ class PostContainer extends Component {
                 console.log('drink data:', res.data)
                 this.setState({
                     drinks: res.data,
-                    user_id: this.props.match.params.user_id
+                    // user_id: this.props.match.params.user_id
                 })
             }).then(() => {
                     
-            })
-        axios.get(`http://localhost:3001/users`)
+            }).catch(err => this.setState({err: err}));
+        axios.get(`http://localhost:3001/current`)
         .then((res)=>{
             console.log('getting all users: ', res.data)
             this.setState({
-                users: res.data,
+                user: res.data,
             })
-        }).then(() => {
-            let currentUser_Id = this.state.drinks.user_id;
-            console.log('currentUser_id', currentUser_Id)
-            console.log('grabbed first user in arr', this.state.users[0]);
-                this.setState({
-                    current_user: this.state.users[0]
-                });
-            console.log('123', this.state.current_user)
-        })
-    }
+        }).catch(err => this.setState({err: err}));
+        }
+    
     onSubmit = (newDrink) => {
         let currentUser_Id = this.props.match.params.user_id
         axios.post(`http://localhost:3001/users/${currentUser_Id}/drinks`, newDrink)
@@ -58,19 +49,20 @@ class PostContainer extends Component {
     }
     
     render(){
-        
-        return(
-            <div>
+        let { user } = this.state;
+        let userData = user 
+            ? <div>
                 <Header />
                 <div id="profile" className='container'>
                     <div className="row">
                     <aside className="col-md-4">
-                        <img alt="userPic" className="userPic" style={{height: "200px", width:"200px"}} src={this.state.current_user.user_photo}/>
-                        <h2>{this.state.current_user.name}</h2>
-                        <h3>{this.state.current_user.current_city}</h3>
+                        <img alt={user.name} className="userPic" style={{height: "200px", width:"200px"}} src={user.avatar}/>
+                        <h2>{user.name}</h2>
+                        <h3>{user.current_city}</h3>
                         <button className="btn btn-info create" data-toggle="modal" data-target="#modal">Create a Review</button>
                         <a href='#'>Find Coffee</a>
                         <a href='#'>Top Rated Coffee</a>
+                        <Link className="nav-link disabled" to={"/roast"} handleLogout={this.props.handleLogout}>Log Out</Link>
                     </aside>
 
                     <div className='col-md-8 reviews'>
@@ -80,7 +72,13 @@ class PostContainer extends Component {
                 </div>
                 <NewDrink onSubmit={this.onSubmit}  />
             </div>
-                     
+        :<h4>Loading...</h4>
+
+        let error = <div className="text-center pt-4"><h3>Please <Link to='/roast'>login</Link> to view this page</h3></div>
+        return(
+            <div>
+                {this.state.err ? error : userData}
+            </div>        
         )
     }
 }

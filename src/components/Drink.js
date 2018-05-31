@@ -33,6 +33,13 @@ class Drink extends Component {
             })
 
     }
+    handleChange=(event)=>{
+        const value = event.target.value;
+        this.setState({drinks: {
+            ...this.state.drinks,
+            [event.target.name]: value
+        }});
+    }
 
     onEdit=()=>{
         console.log("EDIT CLICK STATE: ",this.state.drinks)
@@ -40,14 +47,6 @@ class Drink extends Component {
             ...this.state.drinks,
             editable: false
         })
-    }
-    
-    handleChange=(event)=>{
-        const value = event.target.value;
-        this.setState({drinks: {
-            ...this.state.drinks,
-            [event.target.name]: value
-        }});
     }
 
     onSubmit=(event)=>{
@@ -67,7 +66,6 @@ class Drink extends Component {
                 
                 })
             });
-            // console.log('123', this.state.drinks);
     }
 
 

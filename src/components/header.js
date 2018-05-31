@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {Link} from 'react-router-dom'; 
 
 class Header extends Component{
     render(){
@@ -20,7 +21,7 @@ class Header extends Component{
                                 <a className="nav-link" href="/roast/find">Find Coffee</a>
                                 </li>
                                 <li className="nav-item">
-                                <a className="nav-link disabled" href="#">Disabled</a>
+                                {/* <Link className="nav-link disabled" to={"/roast"} handleLogout={this.props.handleLogout}>Log Out</Link> */}
                                 </li>
                             </ul>
                         </div>
