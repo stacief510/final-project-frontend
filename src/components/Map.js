@@ -135,7 +135,7 @@ class  MapContainer extends Component {
                 marker={this.state.activeMarker}
                 visible={this.state.showingInfoWindow}>
                 <div>
-                  <h1> <span role="img" aria-labelledby="sleepy">😴 ☕</span> </h1>
+                  <h1> <span role="img" aria-labelledby="sleepy">😴 </span> </h1>
                 </div>
             </InfoWindow>
           </Map> 
